@@ -41,15 +41,15 @@ function createWorkloadGrid() {
 
 function WorkloadCell({ user, row, col }: { user: WorkloadUser | null, row: number, col: number }) {
   if (!user) {
-    return <div className="w-8 h-8"></div>;
+    return <div className="w-6 lg:w-8 h-6 lg:h-8"></div>;
   }
-  
+
   // Different patterns based on position for visual variety
   const isFilled = user.workload > 0;
   const isHighlighted = user.isHighlighted;
-  
-  let cellClass = "w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-aeonik font-medium";
-  
+
+  let cellClass = "w-6 lg:w-8 h-6 lg:h-8 rounded-full border-2 flex items-center justify-center text-xs font-aeonik font-medium";
+
   if (isHighlighted) {
     cellClass += " bg-orange-primary border-orange-primary text-white";
   } else if (isFilled) {
@@ -57,14 +57,19 @@ function WorkloadCell({ user, row, col }: { user: WorkloadUser | null, row: numb
   } else {
     cellClass += " border-text-primary/60 text-text-primary bg-transparent";
   }
-  
+
   return (
     <div className="flex flex-col items-center gap-1">
       <div className={cellClass}>
-        {user.workload < 10 ? `0${user.workload}` : user.workload}
+        <span className="text-xs lg:text-xs">
+          {user.workload < 10 ? `0${user.workload}` : user.workload}
+        </span>
       </div>
-      <span className="text-text-secondary font-aeonik text-xs">
+      <span className="text-text-secondary font-aeonik text-xs hidden sm:block">
         {user.name}
+      </span>
+      <span className="text-text-secondary font-aeonik text-xs sm:hidden">
+        {user.name.slice(0, 3)}
       </span>
     </div>
   );
@@ -92,12 +97,12 @@ export function ProjectsWorkload() {
         </div>
       </div>
       
-      {/* Workload Grid */}
-      <div className="space-y-4">
+      {/* Workload Grid - Responsive */}
+      <div className="space-y-3 lg:space-y-4">
         {workloadGrid.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex justify-between items-center">
+          <div key={rowIndex} className="flex justify-between items-center gap-1 lg:gap-2">
             {row.map((user, colIndex) => (
-              <WorkloadCell 
+              <WorkloadCell
                 key={`${rowIndex}-${colIndex}`}
                 user={user}
                 row={rowIndex}
