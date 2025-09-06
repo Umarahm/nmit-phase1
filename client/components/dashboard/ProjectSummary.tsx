@@ -109,23 +109,24 @@ export function ProjectSummary() {
           Project summary
         </h3>
         
-        {/* Filters */}
-        <div className="flex items-center gap-2">
-          <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
+        {/* Filters - Responsive layout */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 overflow-x-auto">
+          <div className="bg-white rounded-2xl px-3 lg:px-4 py-2 shadow-sm border border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">
               <span className="text-text-primary font-aeonik text-sm">Project</span>
               <ChevronDown className="w-4 h-4 text-gray-600" />
             </div>
           </div>
-          
-          <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
+
+          <div className="bg-white rounded-2xl px-3 lg:px-4 py-2 shadow-sm border border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">
-              <span className="text-text-primary font-aeonik text-sm">Project manager</span>
+              <span className="text-text-primary font-aeonik text-sm hidden sm:inline">Project manager</span>
+              <span className="text-text-primary font-aeonik text-sm sm:hidden">Manager</span>
               <ChevronDown className="w-4 h-4 text-gray-600" />
             </div>
           </div>
-          
-          <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
+
+          <div className="bg-white rounded-2xl px-3 lg:px-4 py-2 shadow-sm border border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">
               <span className="text-text-primary font-aeonik text-sm">Status</span>
               <ChevronDown className="w-4 h-4 text-gray-600" />
@@ -134,10 +135,10 @@ export function ProjectSummary() {
         </div>
       </div>
       
-      {/* Table */}
+      {/* Table - Responsive layout */}
       <div className="space-y-4">
-        {/* Table Header */}
-        <div className="grid grid-cols-12 gap-4 pb-2 border-b border-black/10">
+        {/* Desktop Table Header - Hidden on mobile */}
+        <div className="hidden lg:grid grid-cols-12 gap-4 pb-2 border-b border-black/10">
           <div className="col-span-3">
             <span className="text-text-primary font-aeonik text-sm font-medium">Name</span>
           </div>
@@ -154,37 +155,63 @@ export function ProjectSummary() {
             <span className="text-text-primary font-aeonik text-sm font-medium">Progress</span>
           </div>
         </div>
-        
-        {/* Table Rows */}
+
+        {/* Responsive Table Rows */}
         {projects.map((project, index) => (
-          <div key={index} className="grid grid-cols-12 gap-4 py-2 items-center">
-            <div className="col-span-3">
-              <span className="text-text-primary font-aeonik text-sm">
-                {project.name}
-              </span>
-            </div>
-            <div className="col-span-3">
-              <span className="text-text-primary font-aeonik text-sm">
-                {project.manager}
-              </span>
-            </div>
-            <div className="col-span-2">
-              <span className="text-text-primary font-aeonik text-sm">
-                {project.dueDate}
-              </span>
-            </div>
-            <div className="col-span-2">
+          <div key={index} className="lg:grid lg:grid-cols-12 lg:gap-4 lg:py-2 lg:items-center">
+            {/* Mobile Card Layout */}
+            <div className="lg:hidden bg-white/20 rounded-xl p-4 space-y-3">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h4 className="text-text-primary font-aeonik text-sm font-medium mb-1">
+                    {project.name}
+                  </h4>
+                  <p className="text-text-secondary font-aeonik text-xs">
+                    {project.manager} • {project.dueDate}
+                  </p>
+                </div>
+                <ProgressCircle
+                  progress={project.progress}
+                  color={project.progressColor}
+                />
+              </div>
               <div className={`inline-flex px-2 py-1 rounded-2xl ${project.status.bgColor}`}>
                 <span className={`font-aeonik text-xs ${project.status.color}`}>
                   {project.status.label}
                 </span>
               </div>
             </div>
-            <div className="col-span-2">
-              <ProgressCircle 
-                progress={project.progress} 
-                color={project.progressColor}
-              />
+
+            {/* Desktop Grid Layout */}
+            <div className="hidden lg:contents">
+              <div className="col-span-3">
+                <span className="text-text-primary font-aeonik text-sm">
+                  {project.name}
+                </span>
+              </div>
+              <div className="col-span-3">
+                <span className="text-text-primary font-aeonik text-sm">
+                  {project.manager}
+                </span>
+              </div>
+              <div className="col-span-2">
+                <span className="text-text-primary font-aeonik text-sm">
+                  {project.dueDate}
+                </span>
+              </div>
+              <div className="col-span-2">
+                <div className={`inline-flex px-2 py-1 rounded-2xl ${project.status.bgColor}`}>
+                  <span className={`font-aeonik text-xs ${project.status.color}`}>
+                    {project.status.label}
+                  </span>
+                </div>
+              </div>
+              <div className="col-span-2">
+                <ProgressCircle
+                  progress={project.progress}
+                  color={project.progressColor}
+                />
+              </div>
             </div>
           </div>
         ))}
