@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from "react";
+import { ChevronDown } from "lucide-react";
 
 interface WorkloadUser {
   name: string;
@@ -12,13 +12,13 @@ interface WorkloadData {
 }
 
 const workloadUsers: WorkloadUser[] = [
-  { name: 'Sam', workload: 7 },
-  { name: 'Meldy', workload: 8 },
-  { name: 'Ken', workload: 2 },
-  { name: 'Dmitry', workload: 10, isHighlighted: true },
-  { name: 'Vego', workload: 8 },
-  { name: 'Kadin', workload: 2 },
-  { name: 'Melm', workload: 4 }
+  { name: "Sam", workload: 7 },
+  { name: "Meldy", workload: 8 },
+  { name: "Ken", workload: 2 },
+  { name: "Dmitry", workload: 10, isHighlighted: true },
+  { name: "Vego", workload: 8 },
+  { name: "Kadin", workload: 2 },
+  { name: "Melm", workload: 4 },
 ];
 
 // Create a grid representing the workload calendar
@@ -39,7 +39,15 @@ function createWorkloadGrid() {
   return grid;
 }
 
-function WorkloadCell({ user, row, col }: { user: WorkloadUser | null, row: number, col: number }) {
+function WorkloadCell({
+  user,
+  row,
+  col,
+}: {
+  user: WorkloadUser | null;
+  row: number;
+  col: number;
+}) {
   if (!user) {
     return <div className="w-6 lg:w-8 h-6 lg:h-8"></div>;
   }
@@ -48,7 +56,8 @@ function WorkloadCell({ user, row, col }: { user: WorkloadUser | null, row: numb
   const isFilled = user.workload > 0;
   const isHighlighted = user.isHighlighted;
 
-  let cellClass = "w-6 lg:w-8 h-6 lg:h-8 rounded-full border-2 flex items-center justify-center text-xs font-aeonik font-medium";
+  let cellClass =
+    "w-6 lg:w-8 h-6 lg:h-8 rounded-full border-2 flex items-center justify-center text-xs font-aeonik font-medium";
 
   if (isHighlighted) {
     cellClass += " bg-orange-primary border-orange-primary text-white";
@@ -77,7 +86,7 @@ function WorkloadCell({ user, row, col }: { user: WorkloadUser | null, row: numb
 
 export function ProjectsWorkload() {
   const workloadGrid = createWorkloadGrid();
-  
+
   return (
     <div className="bg-card-bg rounded-2xl p-5 backdrop-blur-sm">
       {/* Header */}
@@ -85,7 +94,7 @@ export function ProjectsWorkload() {
         <h3 className="text-text-primary font-aeonik text-lg font-normal">
           Projects Workload
         </h3>
-        
+
         {/* Time Filter */}
         <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
           <div className="flex items-center gap-3">
@@ -96,11 +105,14 @@ export function ProjectsWorkload() {
           </div>
         </div>
       </div>
-      
+
       {/* Workload Grid - Responsive */}
       <div className="space-y-3 lg:space-y-4">
         {workloadGrid.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex justify-between items-center gap-1 lg:gap-2">
+          <div
+            key={rowIndex}
+            className="flex justify-between items-center gap-1 lg:gap-2"
+          >
             {row.map((user, colIndex) => (
               <WorkloadCell
                 key={`${rowIndex}-${colIndex}`}
@@ -112,7 +124,7 @@ export function ProjectsWorkload() {
           </div>
         ))}
       </div>
-      
+
       {/* Legend */}
       <div className="mt-6 flex items-center justify-center gap-4 text-xs">
         <div className="flex items-center gap-2">

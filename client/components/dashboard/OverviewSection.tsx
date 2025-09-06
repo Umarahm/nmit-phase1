@@ -1,5 +1,13 @@
-import React from 'react';
-import { BarChart3, Briefcase, Clock, User, ArrowUp, ArrowDown, ChevronDown } from 'lucide-react';
+import React from "react";
+import {
+  BarChart3,
+  Briefcase,
+  Clock,
+  User,
+  ArrowUp,
+  ArrowDown,
+  ChevronDown,
+} from "lucide-react";
 
 interface MetricCardProps {
   title: string;
@@ -7,20 +15,31 @@ interface MetricCardProps {
   subValue?: string;
   icon: React.ReactNode;
   iconBg: string;
-  trend: 'up' | 'down';
+  trend: "up" | "down";
   trendValue: string;
   trendText: string;
 }
 
-function MetricCard({ title, value, subValue, icon, iconBg, trend, trendValue, trendText }: MetricCardProps) {
+function MetricCard({
+  title,
+  value,
+  subValue,
+  icon,
+  iconBg,
+  trend,
+  trendValue,
+  trendText,
+}: MetricCardProps) {
   return (
     <div className="bg-card-bg rounded-2xl p-5 backdrop-blur-sm">
       <div className="flex flex-col gap-5">
         {/* Icon */}
-        <div className={`w-12 h-12 ${iconBg} rounded-full flex items-center justify-center`}>
+        <div
+          className={`w-12 h-12 ${iconBg} rounded-full flex items-center justify-center`}
+        >
           {icon}
         </div>
-        
+
         {/* Content */}
         <div className="flex flex-col gap-2">
           <span className="text-text-secondary font-aeonik text-sm">
@@ -37,11 +56,11 @@ function MetricCard({ title, value, subValue, icon, iconBg, trend, trendValue, t
             )}
           </div>
         </div>
-        
+
         {/* Trend */}
         <div className="flex items-center gap-1">
           <div className="flex items-center gap-1">
-            {trend === 'up' ? (
+            {trend === "up" ? (
               <ArrowUp className="w-3 h-3 text-green-success" />
             ) : (
               <ArrowDown className="w-3 h-3 text-red-danger" />
@@ -64,7 +83,7 @@ export function OverviewSection() {
         <h2 className="text-text-primary font-aeonik text-2xl font-normal">
           Overview
         </h2>
-        
+
         {/* Time Filter */}
         <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
           <div className="flex items-center gap-3">
@@ -75,7 +94,7 @@ export function OverviewSection() {
           </div>
         </div>
       </div>
-      
+
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <MetricCard
@@ -87,7 +106,7 @@ export function OverviewSection() {
           trendValue="12%"
           trendText="increase from last month"
         />
-        
+
         <MetricCard
           title="Projects"
           value="95"
@@ -98,7 +117,7 @@ export function OverviewSection() {
           trendValue="10%"
           trendText="decrease from last month"
         />
-        
+
         <MetricCard
           title="Time spent"
           value="1022"
@@ -109,7 +128,7 @@ export function OverviewSection() {
           trendValue="8%"
           trendText="increase from last month"
         />
-        
+
         <MetricCard
           title="Resources"
           value="101"

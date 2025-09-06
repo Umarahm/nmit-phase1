@@ -1,12 +1,12 @@
-import React from 'react';
-import { Sidebar } from '../components/dashboard/Sidebar';
-import { Header } from '../components/dashboard/Header';
-import { OverviewSection } from '../components/dashboard/OverviewSection';
-import { ProjectSummary } from '../components/dashboard/ProjectSummary';
-import { OverallProgress } from '../components/dashboard/OverallProgress';
-import { TodayTasks } from '../components/dashboard/TodayTasks';
-import { ProjectsWorkload } from '../components/dashboard/ProjectsWorkload';
-import { HelpButton } from '../components/dashboard/HelpButton';
+import React from "react";
+import { Sidebar } from "../components/dashboard/Sidebar";
+import { Header } from "../components/dashboard/Header";
+import { OverviewSection } from "../components/dashboard/OverviewSection";
+import { ProjectSummary } from "../components/dashboard/ProjectSummary";
+import { OverallProgress } from "../components/dashboard/OverallProgress";
+import { TodayTasks } from "../components/dashboard/TodayTasks";
+import { ProjectsWorkload } from "../components/dashboard/ProjectsWorkload";
+import { HelpButton } from "../components/dashboard/HelpButton";
 
 export default function Index() {
   return (

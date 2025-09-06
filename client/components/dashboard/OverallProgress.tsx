@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from "react";
+import { ChevronDown } from "lucide-react";
 
 interface ProgressStat {
   label: string;
@@ -11,7 +11,7 @@ const progressStats: ProgressStat[] = [
   { label: "Total projects", value: "95", color: "text-text-primary" },
   { label: "Completed", value: "26", color: "text-green-success" },
   { label: "Delayed", value: "35", color: "text-yellow-warning" },
-  { label: "On going", value: "35", color: "text-orange-primary" }
+  { label: "On going", value: "35", color: "text-orange-primary" },
 ];
 
 function CircularProgressChart() {
@@ -22,7 +22,7 @@ function CircularProgressChart() {
   const circumference = 2 * Math.PI * radius;
   const strokeDasharray = circumference;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
-  
+
   return (
     <div className="relative w-44 h-44 flex items-center justify-center">
       <svg className="w-44 h-44 transform -rotate-90" viewBox="0 0 200 200">
@@ -35,7 +35,7 @@ function CircularProgressChart() {
           strokeWidth="8"
           fill="none"
         />
-        
+
         {/* Completed progress (green) */}
         <circle
           cx="100"
@@ -48,7 +48,7 @@ function CircularProgressChart() {
           strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
         />
-        
+
         {/* Delayed progress (yellow) */}
         <circle
           cx="100"
@@ -61,7 +61,7 @@ function CircularProgressChart() {
           strokeDashoffset={circumference * 0.4}
           strokeLinecap="round"
         />
-        
+
         {/* Ongoing progress (orange) */}
         <circle
           cx="100"
@@ -75,7 +75,7 @@ function CircularProgressChart() {
           strokeLinecap="round"
         />
       </svg>
-      
+
       {/* Center text */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center">
@@ -100,7 +100,7 @@ export function OverallProgress() {
           <h3 className="text-text-primary font-aeonik text-lg font-normal">
             Overall Progress
           </h3>
-          
+
           {/* Filter */}
           <div className="bg-white rounded-2xl px-4 py-2 shadow-sm border border-gray-100">
             <div className="flex items-center gap-2">
@@ -109,16 +109,18 @@ export function OverallProgress() {
             </div>
           </div>
         </div>
-        
+
         {/* Progress Chart */}
         <div className="flex flex-col items-center gap-8">
           <CircularProgressChart />
-          
+
           {/* Progress Statistics */}
           <div className="w-full grid grid-cols-2 gap-4">
             {progressStats.map((stat, index) => (
               <div key={index} className="flex flex-col items-center gap-1">
-                <span className={`font-aeonik text-2xl font-normal ${stat.color}`}>
+                <span
+                  className={`font-aeonik text-2xl font-normal ${stat.color}`}
+                >
                   {stat.value}
                 </span>
                 <span className="text-text-secondary font-aeonik text-sm text-center">
