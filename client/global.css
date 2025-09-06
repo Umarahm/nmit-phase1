@@ -105,6 +105,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-dashboard-bg text-text-primary font-aeonik;
   }
 }
