@@ -6,10 +6,18 @@ export function Header() {
     <div className="bg-transparent">
       {/* Header Content */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between px-4 sm:px-6 lg:px-8 py-4 lg:py-6 gap-4 lg:gap-0">
-        {/* Dashboard Title */}
-        <h1 className="text-text-primary font-aeonik text-2xl lg:text-3xl font-normal">
-          Dashboard
-        </h1>
+        {/* Mobile Menu & Title */}
+        <div className="flex items-center gap-3 w-full lg:w-auto">
+          {/* Mobile Menu Button */}
+          <button className="lg:hidden bg-white rounded-full p-2 shadow-sm border border-gray-100">
+            <Menu className="w-5 h-5 text-gray-600" />
+          </button>
+
+          {/* Dashboard Title */}
+          <h1 className="text-text-primary font-aeonik text-2xl lg:text-3xl font-normal">
+            Dashboard
+          </h1>
+        </div>
 
         {/* Header Actions */}
         <div className="flex items-center gap-2 lg:gap-4 w-full lg:w-auto">
