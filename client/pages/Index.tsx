@@ -7,19 +7,17 @@ import { OverallProgress } from "../components/dashboard/OverallProgress";
 import { TodayTasks } from "../components/dashboard/TodayTasks";
 import { ProjectsWorkload } from "../components/dashboard/ProjectsWorkload";
 import { HelpButton } from "../components/dashboard/HelpButton";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-dashboard-bg">
-      {/* Main Layout Container */}
-      <div className="flex">
-        {/* Sidebar - Hidden on mobile, shown on desktop */}
-        <div className="hidden lg:block">
-          <Sidebar />
-        </div>
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen bg-dashboard-bg flex w-full">
+        {/* Sidebar */}
+        <Sidebar />
 
         {/* Main Content */}
-        <div className="flex-1 lg:ml-[260px]">
+        <SidebarInset className="flex-1">
           {/* Header */}
           <Header />
 
@@ -54,11 +52,11 @@ export default function Index() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </SidebarInset>
 
-      {/* Help Button - Fixed position */}
-      <HelpButton />
-    </div>
+        {/* Help Button - Fixed position */}
+        <HelpButton />
+      </div>
+    </SidebarProvider>
   );
 }
